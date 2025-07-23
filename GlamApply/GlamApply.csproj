@@ -38,16 +38,27 @@
     <!-- Dalamud Configuration -->
     <PropertyGroup>
         <DalamudVersion>dev</DalamudVersion>
+        <DalamudHome>$(DALAMUD_HOME)/</DalamudHome>
         <DalamudLocal>../dalamud/</DalamudLocal>
-        <DalamudXIVLauncher>$(APPDATA)\XIVLauncher\addon\Hooks\$(DalamudVersion)</DalamudXIVLauncher>
+    </PropertyGroup>
+
+    <!-- Dalamud Configuration (Windows-specific) -->
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+        <DalamudLibPath>$(APPDATA)\XIVLauncher\addon\Hooks\$(DalamudVersion)\</DalamudLibPath>
+    </PropertyGroup>
+
+    <!-- Dalamud Configuration (Linux-specific) -->
+    <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+        <DalamudLibPath>$(HOME)/.xlcore/dalamud/Hooks/$(DalamudVersion)/</DalamudLibPath>
     </PropertyGroup>
 
     <!-- Assembly Reference Locations -->
     <PropertyGroup>
         <AssemblySearchPaths>
             $(AssemblySearchPaths);
+            $(DalamudHome);
             $(DalamudLocal);
-            $(DalamudXIVLauncher);
+            $(DalamudLibPath);
         </AssemblySearchPaths>
     </PropertyGroup>
 
@@ -69,7 +80,7 @@
         </Reference>
         <Reference Include="ImGuiScene">
             <Private>false</Private>
-        </Reference>        
+        </Reference>
         <Reference Include="Lumina">
             <Private>false</Private>
         </Reference>
