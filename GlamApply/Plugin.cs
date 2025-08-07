@@ -9,7 +9,8 @@ namespace GlamApply
 {
     public class Plugin : IDalamudPlugin
     {
-        public static readonly string Version = Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "0.1.0.2";
+        public static readonly string Version =
+            Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "0.1.0.2";
 
         public string Name => "GlamApply";
         private readonly ICommandManager _commandManager;
@@ -22,11 +23,7 @@ namespace GlamApply
 
             _commandManager.AddHandler(
                 "/gp",
-                new CommandInfo(PluginCommand)
-                {
-                    HelpMessage = "Apply Glamour Plate",
-                    ShowInHelp = true
-                }
+                new CommandInfo(PluginCommand) { HelpMessage = "Apply Glamour Plate", ShowInHelp = true }
             );
         }
 
