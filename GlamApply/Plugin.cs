@@ -10,7 +10,7 @@ namespace GlamApply
     public class Plugin : IDalamudPlugin
     {
         public static readonly string Version =
-            Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "0.1.0.2";
+            Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "0.1.0.3";
 
         public string Name => "GlamApply";
         private readonly ICommandManager _commandManager;
